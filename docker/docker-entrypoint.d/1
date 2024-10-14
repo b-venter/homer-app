@@ -92,6 +92,7 @@ if [ -f /usr/local/homer/etc/webapp_config.json ]; then
    if [ -n "$OAUTH_PRFL_URI" ]; then sed -i "s,https://www.googleapis.com/oauth2/v1/userinfo,${OAUTH_PRFL_URI},g" /usr/local/homer/etc/webapp_config.json; fi
    #Remember that Homer creates the endpoint "$OAUTH_RDRT_URI + \ + $OAUTH_PROVIDER". In Auth0, Callback URL must be set to this combined value.
    if [ -n "$OAUTH_PROVIDER" ]; then sed -i "s/homer_oauth_provider/${OAUTH_PROVIDER}/g" /usr/local/homer/etc/webapp_config.json; fi
+   if [ -n "$OAUTH_RANDMSTR" ]; then sed -i "s/RandomURLSafeStringWithAMinimumLengthOf43Characters/${OAUTH_RANDMSTR}/g" /usr/local/homer/etc/webapp_config.json; fi
 
    echo "Pre-Flight provisioning completed!"
 
