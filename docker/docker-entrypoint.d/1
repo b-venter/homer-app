@@ -82,6 +82,17 @@ if [ -f /usr/local/homer/etc/webapp_config.json ]; then
    if [ -n "$TSHARK_ACTIVE" ]; then sed -i "s/tshark_active/${TSHARK_ACTIVE}/g" /usr/local/homer/etc/webapp_config.json; fi
    if [ -n "$TSHARK_BIN" ]; then sed -i "s/tshark_bin/${TSHARK_BIN}/g" /usr/local/homer/etc/webapp_config.json; fi
 
+   if [ -n "$OAUTH_ENABLE" ]; then sed -i "s/homer_oauth/${OAUTH_ENABLE}/g" /usr/local/homer/etc/webapp_config.json; fi
+   if [ -n "$OAUTH_CLIENT_ID" ]; then sed -i "s/homer_oauth_cid/${OAUTH_CLIENT_ID}/g" /usr/local/homer/etc/webapp_config.json; fi
+   if [ -n "$OAUTH_SECRET" ]; then sed -i "s/homer_oauth_secret/${OAUTH_SECRET}/g" /usr/local/homer/etc/webapp_config.json; fi
+   if [ -n "$OAUTH_AUTH_URI" ]; then sed -i "s,https://accounts.google.com/o/oauth2/auth,${OAUTH_AUTH_URI},g" /usr/local/homer/etc/webapp_config.json; fi
+   if [ -n "$OAUTH_TOKN_URI" ]; then sed -i "s,https://oauth2.googleapis.com/token,${OAUTH_TOKN_URI},g" /usr/local/homer/etc/webapp_config.json; fi
+   #The redirect value below should be https and a public FQDN unless accessing from same host
+   if [ -n "$OAUTH_RDRT_URI" ]; then sed -i "s,http://localhost:80/api/v3/oauth2/auth,${OAUTH_RDRT_URI},g" /usr/local/homer/etc/webapp_config.json; fi
+   if [ -n "$OAUTH_PRFL_URI" ]; then sed -i "s,https://www.googleapis.com/oauth2/v1/userinfo,${OAUTH_PRFL_URI},g" /usr/local/homer/etc/webapp_config.json; fi
+   #Remember that Homer creates the endpoint "$OAUTH_RDRT_URI + \ + $OAUTH_PROVIDER". In Auth0, Callback URL must be set to this combined value.
+   if [ -n "$OAUTH_PROVIDER" ]; then sed -i "s/homer_oauth_provider/${OAUTH_PROVIDER}/g" /usr/local/homer/etc/webapp_config.json; fi
+
    echo "Pre-Flight provisioning completed!"
 
 else
