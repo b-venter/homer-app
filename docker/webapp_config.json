@@ -89,6 +89,31 @@
     "anonymous": false,
     "userdn": "uid=%s,ou=People,dc=example,dc=com"
   },
+  "oauth2": {
+    "enable": homer_oauth,
+    "client_id": "homer_oauth_cid",
+    "client_secret": "homer_oauth_secret",
+    "project_id": "Homer OAuth",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "redirect_uri": "http://localhost:80/api/v3/oauth2/auth",
+    "service_redirect": "/api/v3/oauth2/redirect",
+    "profile_url": "https://www.googleapis.com/oauth2/v1/userinfo",
+    "provider_name": "homer_oauth_provider",
+    "grant_type": "authorization_code",
+    "response_type": "code",
+    "auth_style": 1,
+    "use_pkce": true,
+    "user_token": "RandomURLSafeStringWithAMinimumLengthOf43Characters",
+    "scope": [
+        "email",
+        "openid",
+        "profile"
+    ],
+    "gravatar": false,
+    "gravatar_url": "https://www.gravatar.com/avatar/%s.jpg",
+    "provider_image": ""
+  },
   "decoder_shark": {
       "_comment": "Here you can do packet decoding using tshark application. Please define uid, gid if you run the app under root",
       "active": tshark_active,
